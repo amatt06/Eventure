@@ -1,6 +1,8 @@
 require('dotenv').config(); // Load environment variables
+
 const express = require('express');
 const mongoose = require('mongoose');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -11,6 +13,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Parse the JSON
 app.use(express.json());
+
+// Use user routes
+app.use('/user', userRoutes);
 
 // Test route
 app.get('/', (req, res) => {
