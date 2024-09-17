@@ -1,15 +1,15 @@
 const express = require('express');
 const User = require('../models/User');
-
 const router = express.Router();
 
 // Get all users
 router.get('/', async (req, res) => {
     try {
-        const users = await User.find(); // Fetch all users
-        res.status(200).json(users); // Send the users as a JSON response
+        const users = await User.find();
+        res.status(200).json(users);
     } catch (err) {
-        res.status(500).json({error: err.message});
+        console.error('Error fetching users:', err);
+        res.status(500).json({error: 'Server error while fetching users'});
     }
 });
 
@@ -21,7 +21,8 @@ router.post('/', async (req, res) => {
         await newUser.save();
         res.status(201).json(newUser);
     } catch (err) {
-        res.status(400).json({error: err.message});
+        console.error('Error creating user:', err);
+        res.status(400).json({error: 'Error creating user'});
     }
 });
 
@@ -34,7 +35,8 @@ router.get('/:id', async (req, res) => {
         }
         res.status(200).json(user);
     } catch (err) {
-        res.status(500).json({error: err.message});
+        console.error('Error fetching user by ID:', err);
+        res.status(500).json({error: 'Server error while fetching user'});
     }
 });
 
@@ -47,11 +49,12 @@ router.put('/:id', async (req, res) => {
         }
         res.status(200).json(updatedUser);
     } catch (err) {
-        res.status(400).json({error: err.message});
+        console.error('Error updating user:', err);
+        res.status(400).json({error: 'Error updating user'});
     }
 });
 
-//Delete a user by ID
+// Delete a user by ID
 router.delete('/:id', async (req, res) => {
     try {
         const deletedUser = await User.findByIdAndDelete(req.params.id);
@@ -60,7 +63,8 @@ router.delete('/:id', async (req, res) => {
         }
         res.status(200).json({message: 'User deleted successfully'});
     } catch (err) {
-        res.status(500).json({error: err.message});
+        console.error('Error deleting user:', err);
+        res.status(500).json({error: 'Server error while deleting user'});
     }
 });
 
