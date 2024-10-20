@@ -1,4 +1,3 @@
-// authMiddleware.js
 const jwt = require('jsonwebtoken');
 
 // Middleware to check access level and verify the token
@@ -14,7 +13,7 @@ const authMiddleware = (requiredLevel) => (req, res, next) => {
         req.user = decoded;
 
         // Check if the user meets the required access level
-        if (req.user.accessLevel > requiredLevel) {
+        if (req.user.accessLevel < requiredLevel) {
             return res.status(403).json({message: 'Forbidden: Insufficient access level'});
         }
 
