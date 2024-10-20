@@ -4,20 +4,22 @@ const jwt = require('jsonwebtoken');
 const authMiddleware = (requiredLevel) => (req, res, next) => {
     const token = req.header('x-auth-token');
 
+    // If no token is provided, deny access
     if (!token) {
         return res.status(401).json({message: 'Authorization denied: No token provided'});
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
+        // Verify token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET); // Decode the token
+        req.user = decoded; // Add the decoded user info (including access level) to the request
 
-        // Check if the user meets the required access level
+        // Check if the user's access level is sufficient
         if (req.user.accessLevel < requiredLevel) {
             return res.status(403).json({message: 'Forbidden: Insufficient access level'});
         }
 
-        next();
+        next(); // Proceed to the next middleware or route handler
     } catch (err) {
         console.error('Token validation failed:', err);
         res.status(401).json({message: 'Token is not valid'});

@@ -1,35 +1,10 @@
-// routes/eventRoutes.js
 const express = require('express');
-const jwt = require('jsonwebtoken');
 const Event = require('../models/Event');
+const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
-// Middleware to verify token and check access level
-function verifyToken(req, res, next) {
-    const token = req.header('x-auth-token');
-    if (!token) {
-        return res.status(401).json({ message: 'No token, authorization denied' });
-    }
-
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
-        next();
-    } catch (err) {
-        return res.status(401).json({ message: 'Token is not valid' });
-    }
-}
-
-// Check if user is an organiser (access level 1)
-function checkOrganizer(req, res, next) {
-    if (req.user.accessLevel !== 1) {
-        return res.status(403).json({ message: 'Access denied: Only organizers can create events' });
-    }
-    next();
-}
-
 // Route to create a new event (only accessible by level 1 users)
-router.post('/create', verifyToken, checkOrganizer, async (req, res) => {
+router.post('/create', authMiddleware(1), async (req, res) => {
     try {
         const { title, description, date, location } = req.body;
 
