@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/auth');
+const eventRoutes = require('./routes/eventRoutes');
 
 const app = express();
 
@@ -20,6 +21,9 @@ app.use('/user', userRoutes);
 
 // Use auth routes
 app.use('/auth', authRoutes);
+
+// event routes
+app.use('/events', eventRoutes);
 
 // Test route
 app.get('/', (req, res) => {
