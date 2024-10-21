@@ -121,7 +121,42 @@ router.delete('/:id', authMiddleware(1), async (req, res) => {
     }
 });
 
+// RSVP to an event
+router.post('/:id/rsvp', authMiddleware(0), async (req, res) => {
+    try {
+        const event = await Event.findById(req.params.id);
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
 
+        // Check if the user is the organiser
+        if (event.organiser_id.toString() === req.user.id) {
+            return res.status(403).json({ message: 'Access denied: Organisers cannot RSVP to their own events' });
+        }
 
+        // Check if the user is an invitee
+        if (!event.invitees.includes(req.user.email)) {
+            return res.status(403).json({ message: 'Access denied: You are not invited to this event' });
+        }
+
+        // Check if the user is already in the RSVP responses
+        const existingResponse = event.rsvp_responses.find(r => r.email === req.user.email);
+
+        if (existingResponse) {
+            // Update existing RSVP response to true
+            existingResponse.hasRSVPd = true;
+        } else {
+            // Create a new RSVP response with hasRSVPd set to true
+            event.rsvp_responses.push({ email: req.user.email, hasRSVPd: true });
+        }
+
+        // Save the updated event
+        await event.save();
+        res.json({ message: 'RSVP updated successfully', rsvpResponses: event.rsvp_responses });
+    } catch (err) {
+        console.error('Error responding to RSVP:', err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
 
 module.exports = router;
