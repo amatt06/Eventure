@@ -42,6 +42,24 @@ userSchema.pre('save', async function(next) {
     }
 });
 
+// Hashing logic for updating users.
+userSchema.pre('findOneAndUpdate', async function(next) {
+    const update = this.getUpdate();
+
+    // Check if the password field is being updated
+    if (update.password) {
+        try {
+            const salt = await bcrypt.genSalt(10);
+            update.password = await bcrypt.hash(update.password, salt);
+            this.setUpdate(update);
+        } catch (err) {
+            return next(err);
+        }
+    }
+
+    next();
+});
+
 // Create the User Model
 const User = mongoose.model('User', userSchema);
 
