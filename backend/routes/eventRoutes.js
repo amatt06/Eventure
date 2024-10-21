@@ -17,14 +17,15 @@ router.get('/', async (req, res) => {
 // Route to create a new event (only accessible by level 1 users)
 router.post('/create', authMiddleware(1), async (req, res) => {
     try {
-        const { title, description, date, location } = req.body;
+        const { title, description, date, location, invitees } = req.body;
 
         const newEvent = new Event({
             title,
             description,
             date,
             location,
-            organiser_id: req.user.id
+            organiser_id: req.user.id,
+            invitees: invitees || []
         });
 
         await newEvent.save();
@@ -62,33 +63,6 @@ router.get('/:id', authMiddleware(0), async (req, res) => {
         res.json(event);
     } catch (err) {
         console.error('Error fetching event:', err);
-        res.status(500).json({ message: 'Server error' });
-    }
-});
-
-// Update a specific event (only accessible by the organiser)
-router.put('/:id', authMiddleware(1), async (req, res) => {
-    try {
-        const event = await Event.findById(req.params.id);
-        if (!event) {
-            return res.status(404).json({ message: 'Event not found' });
-        }
-
-        // Check if the user is the organiser of the event
-        if (event.organiser_id.toString() !== req.user.id) {
-            return res.status(403).json({ message: 'Access denied: Only the organiser can update this event' });
-        }
-
-        // Update event details
-        event.title = req.body.title || event.title;
-        event.description = req.body.description || event.description;
-        event.date = req.body.date || event.date;
-        event.location = req.body.location || event.location;
-
-        await event.save();
-        res.json({ message: 'Event updated successfully', event });
-    } catch (err) {
-        console.error('Error updating event:', err);
         res.status(500).json({ message: 'Server error' });
     }
 });
