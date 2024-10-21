@@ -35,7 +35,7 @@ router.post('/create', authMiddleware(1), async (req, res) => {
     }
 });
 
-// Get events for the logged-in user (organiser and attendee)
+// Get events for the logged-in user (all user levels)
 router.get('/user', authMiddleware(0), async (req, res) => {
     try {
         const events = await Event.find({
@@ -48,6 +48,20 @@ router.get('/user', authMiddleware(0), async (req, res) => {
         res.json(events);
     } catch (err) {
         console.error('Error fetching user events:', err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Get a specific event by ID
+router.get('/:id', authMiddleware(0), async (req, res) => {
+    try {
+        const event = await Event.findById(req.params.id);
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+        res.json(event);
+    } catch (err) {
+        console.error('Error fetching event:', err);
         res.status(500).json({ message: 'Server error' });
     }
 });
