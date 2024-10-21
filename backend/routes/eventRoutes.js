@@ -159,4 +159,35 @@ router.post('/:id/rsvp', authMiddleware(0), async (req, res) => {
     }
 });
 
+// Un-RSVP to an event -- Remove user from list.
+router.post('/:id/unrsvp', authMiddleware(0), async (req, res) => {
+    try {
+        const event = await Event.findById(req.params.id);
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        // Check if the user is the organiser
+        if (event.organiser_id.toString() === req.user.id) {
+            return res.status(403).json({ message: 'Access denied: Organisers cannot un-RSVP for their own events' });
+        }
+
+        // Remove the user from the RSVP responses array
+        const initialLength = event.rsvp_responses.length;
+        event.rsvp_responses = event.rsvp_responses.filter(r => r.email !== req.user.email);
+
+        // Check if the RSVP was removed
+        if (event.rsvp_responses.length === initialLength) {
+            return res.status(404).json({ message: 'RSVP not found for this user' });
+        }
+
+        // Save the updated event
+        await event.save();
+        res.json({ message: 'RSVP removed successfully', rsvpResponses: event.rsvp_responses });
+    } catch (err) {
+        console.error('Error responding to un-RSVP:', err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 module.exports = router;
