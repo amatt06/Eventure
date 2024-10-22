@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
     accessLevel: {
         type: Number,
         required: true,
+    },
+    avatarUrl: {
+        type: String,
+        default: null
     }
 });
 
