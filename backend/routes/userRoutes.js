@@ -3,6 +3,9 @@ const User = require('../models/User');
 const router = express.Router();
 const uploadAvatar = require('../middleware/uploadAvatar');
 const authMiddleware = require('../middleware/authMiddleware');
+const sharp = require('sharp');
+const path = require('path');
+const fs = require('fs');
 
 // Get all users (Test Only)
 router.get('/', async (req, res) => {
@@ -80,16 +83,29 @@ router.post('/:id/upload-avatar', authMiddleware(0), uploadAvatar.single('avatar
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Verify the user's own account.
+        // Verify the user's own account
         if (user._id.toString() !== req.user.id) {
             return res.status(403).json({ error: 'You do not have permission to update this profile' });
         }
 
-        // Update user with avatar file path (resized image)
-        user.avatar = req.file.filename;
+        // Define the path for the resized image
+        const imageName = `${userId}-avatar.png`; // Unique image name for each user
+        const imagePath = path.join(__dirname, '../assets/avatars/', imageName);
+
+        // Resize and save the image directly with sharp
+        await sharp(req.file.path)
+            .resize(150, 150)
+            .toFile(imagePath);
+
+        // Update user with the URL of the avatar
+        user.avatarUrl = `/assets/avatars/${imageName}`;
         await user.save();
 
-        res.status(200).json({ message: 'Avatar uploaded successfully', avatarUrl: user.avatar });
+        fs.unlink(req.file.path, (err) => {
+            if (err) console.error('Error deleting original file:', err);
+        });
+
+        res.status(200).json({ message: 'Avatar uploaded successfully', avatarUrl: user.avatarUrl });
     } catch (err) {
         console.error('Error uploading avatar:', err);
         res.status(500).json({ error: 'Error uploading avatar' });
