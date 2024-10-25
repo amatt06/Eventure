@@ -89,11 +89,12 @@ router.post('/:id/upload-avatar', authMiddleware(0), uploadAvatar.single('avatar
         }
 
         // Define the path for the resized image
-        const imageName = `${userId}-avatar.png`; // Unique image name for each user
+        const imageName = `${userId}-avatar.png`;
         const imagePath = path.join(__dirname, '../assets/avatars/', imageName);
 
         // Resize and save the image directly with sharp
         await sharp(req.file.path)
+            .rotate()
             .resize(150, 150)
             .toFile(imagePath);
 
