@@ -11,8 +11,8 @@ const authMiddleware = (requiredLevel) => (req, res, next) => {
 
     try {
         // Verify token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET); // Decode the token
-        req.user = decoded; // Add the decoded user info (including access level) to the request
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = decoded;
 
         // Check if the user's access level is sufficient
         if (req.user.accessLevel < requiredLevel) {

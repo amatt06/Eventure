@@ -2,6 +2,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -35,6 +36,13 @@ router.post('/signin', async (req, res) => {
         console.error('Server error during sign-in:', err);
         res.status(500).json({message: 'Server error'});
     }
+});
+
+// Logout route with authentication check
+router.post('/signout', authMiddleware(0), (req, res) => {
+    let userId = req.user && req.user.id ? req.user.id : 'unknown';
+    console.log(`User with ID ${userId} requested logout`);
+    res.status(200).json({ message: 'User logged out successfully' });
 });
 
 // Token Validation Route
