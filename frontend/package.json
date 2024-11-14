@@ -4,7 +4,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "sass assets/styles/styles.scss:assets/styles/styles.css --watch"
+    "sass": "sass assets/styles/styles.scss:assets/styles/styles.css --watch",
+    "start": "live-server"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "sass": "^1.80.7"
   },
   "dependencies": {
-    "@shoelace-style/shoelace": "^2.18.0"
+    "@shoelace-style/shoelace": "^2.18.0",
+    "live-server": "^1.2.2"
   }
 }
