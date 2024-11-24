@@ -1,8 +1,10 @@
+import Logo from '../assets/Logo.svg'
+
 export function renderSignupPage(root) {
     root.innerHTML = `
     <div class="signup-container">
       <div class="signup-left">
-        <img src="../assets/Logo.svg" alt="Eventure Logo" />
+        <img src="${Logo}" alt="Eventure Logo" />
       </div>
       <div class="signup-right">
         <div class="signup-form">

@@ -1,4 +1,8 @@
 import './styles/main.scss';
+
+import '@shoelace-style/shoelace/dist/components/input/input.js';
+import '@shoelace-style/shoelace/dist/components/button/button.js';
+
 import { renderLoginPage } from './pages/LoginPage.js';
 import { renderSignupPage } from './pages/SignupPage.js';
 
