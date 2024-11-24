@@ -1,8 +1,10 @@
+import Logo from '../assets/Logo.svg'
+
 export function renderLoginPage(root) {
     root.innerHTML = `
     <div class="login-container">
       <div class="login-left">
-        <img src="./assets/Logo.svg" alt="Eventure Logo" />
+        <img src="${Logo}" alt="Eventure Logo" />
       </div>
       <div class="login-right">
         <div class="login-form">
@@ -20,7 +22,7 @@ export function renderLoginPage(root) {
 
     // Handle Sign Up button click
     root.querySelector('.signup-button').addEventListener('click', () => {
-        const event = new CustomEvent('navigate', { detail: { page: 'signup' } });
+        const event = new CustomEvent('navigate', {detail: {page: 'signup'}});
         document.dispatchEvent(event);
     });
 }
