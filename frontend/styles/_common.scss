@@ -1,38 +1,13 @@
-/* Common button and input styles for reusability */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
 
 button, .sl-button {
   padding: 12px 24px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  background-color: #39FF14;
-  color: #fff;
   border-radius: 8px;
 }
 
 input, .sl-input {
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
   margin-bottom: 10px;
-}
-
-/* Divider style for pages */
-.divider {
-  border-left: 1px solid #D9D9D9;
-  height: 100%;
-  margin: 0 20px;
-}
-
-/* Flexbox utility classes */
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
 }
