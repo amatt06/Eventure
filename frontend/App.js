@@ -1,4 +1,4 @@
-import '../styles/main.scss';
+import './styles/main.scss';
 import { renderLoginPage } from './pages/LoginPage.js';
 
 const root = document.getElementById('root');
