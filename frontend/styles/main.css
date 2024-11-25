@@ -3,39 +3,107 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-button, .sl-button {
-  padding: 12px 24px;
-  border-radius: 8px;
-}
-
-input, .sl-input {
-  margin-bottom: 10px;
-}
-
 .login-container {
   display: flex;
   height: 100vh;
+  background-color: #f5f5f5;
+  position: relative;
 }
-
-.login-left {
+.login-container .login-left,
+.login-container .login-right {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.login-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-container .login-left {
+  background-color: white;
 }
-
+.login-container .login-left img {
+  width: 50%;
+  height: auto;
+}
+.login-container .divider {
+  width: 1px;
+  background-color: #d9d9d9;
+  height: 90%;
+  align-self: center;
+}
+@media (max-width: 768px) {
+  .login-container .divider {
+    height: 1px;
+    width: 90%;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+  }
+}
+.login-container .login-right {
+  background-color: white;
+  padding: 20px;
+}
+.login-container .login-right .login-form {
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+.login-container .login-right .login-form h2 {
+  color: #087FFF;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  z-index: 2;
+}
+.login-container .login-right .login-form sl-input::part(base) {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.login-container .login-right .login-form sl-button.login-button::part(base) {
+  width: 100%;
+  color: #6A0DAD;
+  border-radius: 15px;
+  border: 2px solid #6A0DAD;
+  background: #D9D9D9;
+}
+.login-container .login-right .login-form sl-button.login-button::part(base):hover {
+  background: #6A0DAD;
+  color: white;
+}
+.login-container .login-right .login-form sl-button.signup-button::part(base) {
+  width: 100%;
+  color: white;
+  border-radius: 15px;
+  border: 2px solid #6A0DAD;
+  background: #087FFF;
+}
+.login-container .login-right .login-form sl-button.signup-button::part(base):hover {
+  background: #6A0DAD;
+  color: white;
+}
+.login-container .login-right .login-form sl-input::part(base) {
+  border-radius: 15px;
+  border: 1.5px solid #6A0DAD;
+}
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;
   }
+  .login-container .login-left,
+  .login-container .login-right {
+    flex: none;
+    width: 100%;
+  }
+  .login-container .login-left {
+    padding: 20px 10px;
+  }
+  .login-container .login-right {
+    padding: 10px;
+    padding-top: 50px;
+    position: relative;
+  }
 }
+
 .signup-container {
   display: flex;
   height: 100vh;
