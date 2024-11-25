@@ -3,34 +3,37 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.login-container {
+.login-container, .signup-container {
   display: flex;
   height: 100vh;
   background-color: #f5f5f5;
   position: relative;
 }
-.login-container .login-left,
-.login-container .login-right {
+.login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left,
+.login-container .login-right,
+.login-container .signup-right,
+.signup-container .login-right,
+.signup-container .signup-right {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.login-container .login-left {
+.login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left {
   background-color: white;
 }
-.login-container .login-left img {
+.login-container .login-left img, .login-container .signup-left img, .signup-container .login-left img, .signup-container .signup-left img {
   width: 50%;
   height: auto;
 }
-.login-container .divider {
+.login-container .divider, .signup-container .divider {
   width: 1px;
   background-color: #d9d9d9;
   height: 90%;
   align-self: center;
 }
 @media (max-width: 768px) {
-  .login-container .divider {
+  .login-container .divider, .signup-container .divider {
     height: 1px;
     width: 90%;
     top: 50%;
@@ -38,16 +41,16 @@ body {
     z-index: 1;
   }
 }
-.login-container .login-right {
+.login-container .login-right, .login-container .signup-right, .signup-container .login-right, .signup-container .signup-right {
   background-color: white;
   padding: 20px;
 }
-.login-container .login-right .login-form {
+.login-container .login-right .login-form, .signup-right .login-container .login-right .signup-form, .login-container .signup-right .login-form, .login-container .signup-right .signup-form, .signup-container .login-right .login-form, .signup-right .signup-container .login-right .signup-form, .signup-container .signup-right .login-form, .signup-container .signup-right .signup-form {
   width: 80%;
   max-width: 400px;
   text-align: center;
 }
-.login-container .login-right .login-form h2 {
+.login-container .login-right .login-form h2, .signup-right .login-container .login-right .signup-form h2, .login-container .signup-right .login-form h2, .login-container .signup-right .signup-form h2, .signup-container .login-right .login-form h2, .signup-right .signup-container .login-right .signup-form h2, .signup-container .signup-right .login-form h2, .signup-container .signup-right .signup-form h2 {
   color: #087FFF;
   font-size: 40px;
   font-style: normal;
@@ -55,78 +58,184 @@ body {
   line-height: normal;
   z-index: 2;
 }
-.login-container .login-right .login-form sl-input::part(base) {
+.login-container .login-right .login-form sl-input::part(base), .signup-right .login-container .login-right .signup-form sl-input::part(base), .login-container .signup-right .login-form sl-input::part(base), .login-container .signup-right .signup-form sl-input::part(base), .signup-container .login-right .login-form sl-input::part(base), .signup-right .signup-container .login-right .signup-form sl-input::part(base), .signup-container .signup-right .login-form sl-input::part(base), .signup-container .signup-right .signup-form sl-input::part(base) {
   width: 100%;
   margin-bottom: 20px;
 }
-.login-container .login-right .login-form sl-button.login-button::part(base) {
+.login-container .login-right .login-form sl-button.signup-button::part(base), .signup-right .login-container .login-right .signup-form sl-button.signup-button::part(base), .login-container .signup-right .login-form sl-button.signup-button::part(base), .login-container .signup-right .signup-form sl-button.signup-button::part(base), .signup-container .login-right .login-form sl-button.signup-button::part(base), .signup-right .signup-container .login-right .signup-form sl-button.signup-button::part(base), .signup-container .signup-right .login-form sl-button.signup-button::part(base), .signup-container .signup-right .signup-form sl-button.signup-button::part(base) {
   width: 100%;
   color: #6A0DAD;
   border-radius: 15px;
   border: 2px solid #6A0DAD;
   background: #D9D9D9;
 }
-.login-container .login-right .login-form sl-button.login-button::part(base):hover {
+.login-container .login-right .login-form sl-button.signup-button::part(base):hover, .signup-right .login-container .login-right .signup-form sl-button.signup-button::part(base):hover, .login-container .signup-right .login-form sl-button.signup-button::part(base):hover, .login-container .signup-right .signup-form sl-button.signup-button::part(base):hover, .signup-container .login-right .login-form sl-button.signup-button::part(base):hover, .signup-right .signup-container .login-right .signup-form sl-button.signup-button::part(base):hover, .signup-container .signup-right .login-form sl-button.signup-button::part(base):hover, .signup-container .signup-right .signup-form sl-button.signup-button::part(base):hover {
   background: #6A0DAD;
   color: white;
 }
-.login-container .login-right .login-form sl-button.signup-button::part(base) {
+.login-container .login-right .login-form sl-button.login-button::part(base), .signup-right .login-container .login-right .signup-form sl-button.login-button::part(base), .login-container .signup-right .login-form sl-button.login-button::part(base), .login-container .signup-right .signup-form sl-button.login-button::part(base), .signup-container .login-right .login-form sl-button.login-button::part(base), .signup-right .signup-container .login-right .signup-form sl-button.login-button::part(base), .signup-container .signup-right .login-form sl-button.login-button::part(base), .signup-container .signup-right .signup-form sl-button.login-button::part(base) {
   width: 100%;
   color: white;
   border-radius: 15px;
   border: 2px solid #6A0DAD;
   background: #087FFF;
 }
-.login-container .login-right .login-form sl-button.signup-button::part(base):hover {
+.login-container .login-right .login-form sl-button.login-button::part(base):hover, .signup-right .login-container .login-right .signup-form sl-button.login-button::part(base):hover, .login-container .signup-right .login-form sl-button.login-button::part(base):hover, .login-container .signup-right .signup-form sl-button.login-button::part(base):hover, .signup-container .login-right .login-form sl-button.login-button::part(base):hover, .signup-right .signup-container .login-right .signup-form sl-button.login-button::part(base):hover, .signup-container .signup-right .login-form sl-button.login-button::part(base):hover, .signup-container .signup-right .signup-form sl-button.login-button::part(base):hover {
   background: #6A0DAD;
   color: white;
 }
-.login-container .login-right .login-form sl-input::part(base) {
+.login-container .login-right .login-form sl-input::part(base), .signup-right .login-container .login-right .signup-form sl-input::part(base), .login-container .signup-right .login-form sl-input::part(base), .login-container .signup-right .signup-form sl-input::part(base), .signup-container .login-right .login-form sl-input::part(base), .signup-right .signup-container .login-right .signup-form sl-input::part(base), .signup-container .signup-right .login-form sl-input::part(base), .signup-container .signup-right .signup-form sl-input::part(base) {
   border-radius: 15px;
   border: 1.5px solid #6A0DAD;
 }
 @media (max-width: 768px) {
-  .login-container {
+  .login-container, .signup-container {
     flex-direction: column;
   }
-  .login-container .login-left,
-  .login-container .login-right {
+  .login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left,
+  .login-container .login-right,
+  .login-container .signup-right,
+  .signup-container .login-right,
+  .signup-container .signup-right {
     flex: none;
     width: 100%;
   }
-  .login-container .login-left {
+  .login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left {
     padding: 20px 10px;
   }
-  .login-container .login-right {
+  .login-container .login-right, .login-container .signup-right, .signup-container .login-right, .signup-container .signup-right {
     padding: 10px;
     padding-top: 50px;
     position: relative;
   }
 }
 
-.signup-container {
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.login-container, .signup-container {
   display: flex;
   height: 100vh;
+  background-color: #f5f5f5;
+  position: relative;
 }
-
-.signup-left {
+.login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left,
+.login-container .login-right,
+.login-container .signup-right,
+.signup-container .login-right,
+.signup-container .signup-right {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.signup-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left {
+  background-color: white;
 }
-
+.login-container .login-left img, .login-container .signup-left img, .signup-container .login-left img, .signup-container .signup-left img {
+  width: 50%;
+  height: auto;
+}
+.login-container .divider, .signup-container .divider {
+  width: 1px;
+  background-color: #d9d9d9;
+  height: 90%;
+  align-self: center;
+}
 @media (max-width: 768px) {
-  .signup-container {
+  .login-container .divider, .signup-container .divider {
+    height: 1px;
+    width: 90%;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+  }
+}
+.login-container .login-right, .login-container .signup-right, .signup-container .login-right, .signup-container .signup-right {
+  background-color: white;
+  padding: 20px;
+}
+.login-container .login-right .login-form, .signup-right .login-container .login-right .signup-form, .login-container .signup-right .login-form, .login-container .signup-right .signup-form, .signup-container .login-right .login-form, .signup-right .signup-container .login-right .signup-form, .signup-container .signup-right .login-form, .signup-container .signup-right .signup-form {
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+.login-container .login-right .login-form h2, .signup-right .login-container .login-right .signup-form h2, .login-container .signup-right .login-form h2, .login-container .signup-right .signup-form h2, .signup-container .login-right .login-form h2, .signup-right .signup-container .login-right .signup-form h2, .signup-container .signup-right .login-form h2, .signup-container .signup-right .signup-form h2 {
+  color: #087FFF;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  z-index: 2;
+}
+.login-container .login-right .login-form sl-input::part(base), .signup-right .login-container .login-right .signup-form sl-input::part(base), .login-container .signup-right .login-form sl-input::part(base), .login-container .signup-right .signup-form sl-input::part(base), .signup-container .login-right .login-form sl-input::part(base), .signup-right .signup-container .login-right .signup-form sl-input::part(base), .signup-container .signup-right .login-form sl-input::part(base), .signup-container .signup-right .signup-form sl-input::part(base) {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.login-container .login-right .login-form sl-button.signup-button::part(base), .signup-right .login-container .login-right .signup-form sl-button.signup-button::part(base), .login-container .signup-right .login-form sl-button.signup-button::part(base), .login-container .signup-right .signup-form sl-button.signup-button::part(base), .signup-container .login-right .login-form sl-button.signup-button::part(base), .signup-right .signup-container .login-right .signup-form sl-button.signup-button::part(base), .signup-container .signup-right .login-form sl-button.signup-button::part(base), .signup-container .signup-right .signup-form sl-button.signup-button::part(base) {
+  width: 100%;
+  color: #6A0DAD;
+  border-radius: 15px;
+  border: 2px solid #6A0DAD;
+  background: #D9D9D9;
+}
+.login-container .login-right .login-form sl-button.signup-button::part(base):hover, .signup-right .login-container .login-right .signup-form sl-button.signup-button::part(base):hover, .login-container .signup-right .login-form sl-button.signup-button::part(base):hover, .login-container .signup-right .signup-form sl-button.signup-button::part(base):hover, .signup-container .login-right .login-form sl-button.signup-button::part(base):hover, .signup-right .signup-container .login-right .signup-form sl-button.signup-button::part(base):hover, .signup-container .signup-right .login-form sl-button.signup-button::part(base):hover, .signup-container .signup-right .signup-form sl-button.signup-button::part(base):hover {
+  background: #6A0DAD;
+  color: white;
+}
+.login-container .login-right .login-form sl-button.login-button::part(base), .signup-right .login-container .login-right .signup-form sl-button.login-button::part(base), .login-container .signup-right .login-form sl-button.login-button::part(base), .login-container .signup-right .signup-form sl-button.login-button::part(base), .signup-container .login-right .login-form sl-button.login-button::part(base), .signup-right .signup-container .login-right .signup-form sl-button.login-button::part(base), .signup-container .signup-right .login-form sl-button.login-button::part(base), .signup-container .signup-right .signup-form sl-button.login-button::part(base) {
+  width: 100%;
+  color: white;
+  border-radius: 15px;
+  border: 2px solid #6A0DAD;
+  background: #087FFF;
+}
+.login-container .login-right .login-form sl-button.login-button::part(base):hover, .signup-right .login-container .login-right .signup-form sl-button.login-button::part(base):hover, .login-container .signup-right .login-form sl-button.login-button::part(base):hover, .login-container .signup-right .signup-form sl-button.login-button::part(base):hover, .signup-container .login-right .login-form sl-button.login-button::part(base):hover, .signup-right .signup-container .login-right .signup-form sl-button.login-button::part(base):hover, .signup-container .signup-right .login-form sl-button.login-button::part(base):hover, .signup-container .signup-right .signup-form sl-button.login-button::part(base):hover {
+  background: #6A0DAD;
+  color: white;
+}
+.login-container .login-right .login-form sl-input::part(base), .signup-right .login-container .login-right .signup-form sl-input::part(base), .login-container .signup-right .login-form sl-input::part(base), .login-container .signup-right .signup-form sl-input::part(base), .signup-container .login-right .login-form sl-input::part(base), .signup-right .signup-container .login-right .signup-form sl-input::part(base), .signup-container .signup-right .login-form sl-input::part(base), .signup-container .signup-right .signup-form sl-input::part(base) {
+  border-radius: 15px;
+  border: 1.5px solid #6A0DAD;
+}
+@media (max-width: 768px) {
+  .login-container, .signup-container {
     flex-direction: column;
   }
+  .login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left,
+  .login-container .login-right,
+  .login-container .signup-right,
+  .signup-container .login-right,
+  .signup-container .signup-right {
+    flex: none;
+    width: 100%;
+  }
+  .login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left {
+    padding: 20px 10px;
+  }
+  .login-container .login-right, .login-container .signup-right, .signup-container .login-right, .signup-container .signup-right {
+    padding: 10px;
+    padding-top: 50px;
+    position: relative;
+  }
+}
+
+.signup-right .signup-form sl-checkbox::part(base) {
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  font-size: 15px;
+  color: #6A0DAD;
+}
+.signup-right .signup-form sl-button.signup-button::part(base) {
+  background-color: #087FFF;
+  border: 2px solid #087FFF;
+  color: white;
+}
+.signup-right .signup-form sl-button.signup-button::part(base):hover {
+  background-color: #6A0DAD;
+  border-color: #6A0DAD;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -59,7 +59,7 @@
         margin-bottom: 20px;
       }
 
-      sl-button.login-button::part(base) {
+      sl-button.signup-button::part(base) {
         width: 100%;
         color: #6A0DAD;
         border-radius: 15px;
@@ -67,12 +67,12 @@
         background: #D9D9D9;
       }
 
-      sl-button.login-button::part(base):hover {
+      sl-button.signup-button::part(base):hover {
         background: #6A0DAD;
         color: white;
       }
 
-      sl-button.signup-button::part(base) {
+      sl-button.login-button::part(base) {
         width: 100%;
         color: white;
         border-radius: 15px;
@@ -80,7 +80,7 @@
         background: #087FFF;
       }
 
-      sl-button.signup-button::part(base):hover {
+      sl-button.login-button::part(base):hover {
         background: #6A0DAD;
         color: white;
       }

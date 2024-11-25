@@ -1,24 +1,34 @@
+@import 'common';
+@import 'login'; // Reuse styles from login page
+
 .signup-container {
-  display: flex;
-  height: 100vh;
+  @extend .login-container; // Inherit from login-container
 }
-
 .signup-left {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend .login-left;
 }
-
 .signup-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  @extend .login-right;
 
-@media (max-width: 768px) {
-  .signup-container {
-    flex-direction: column;
+  .signup-form {
+    @extend .login-form;
+
+    sl-checkbox::part(base) {
+      margin-bottom: 20px;
+      padding-bottom: 30px;
+      font-size: 15px;
+      color: #6A0DAD;
+    }
+
+    sl-button.signup-button::part(base) {
+      background-color: #087FFF;
+      border: 2px solid #087FFF;
+      color: white;
+    }
+
+    sl-button.signup-button::part(base):hover {
+      background-color: #6A0DAD;
+      border-color: #6A0DAD;
+    }
   }
 }
