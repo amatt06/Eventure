@@ -96,6 +96,10 @@ input, .sl-input::part(base) {
   background: #6A0DAD;
   color: white;
 }
+.login-container .login-right .login-form sl-input::part(base) {
+  border-radius: 15px;
+  border: 1.5px solid #6A0DAD;
+}
 @media (max-width: 768px) {
   .login-container {
     flex-direction: column;

@@ -84,6 +84,11 @@
         background: #6A0DAD;
         color: white;
       }
+
+      sl-input::part(base) {
+        border-radius: 15px;
+        border: 1.5px solid #6A0DAD;
+      }
     }
   }
 
