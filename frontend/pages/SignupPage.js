@@ -15,11 +15,9 @@ export function renderSignupPage(root) {
             <sl-input name="email" type="email" placeholder="Email" required></sl-input>
             <sl-input name="password" type="password" placeholder="Password" required></sl-input>
             <sl-input name="confirmPassword" type="password" placeholder="Confirm Password" required></sl-input>
-            <sl-checkbox name="isOrganizer">Sign up as Organizer</sl-checkbox>
-            <div class="signup-buttons">
-                <sl-button type="submit" variant="primary" class="signup-button">Sign Up</sl-button>
-                <sl-button variant="text" class="login-button">Back to Login</sl-button>
-            <div/>
+            <sl-checkbox name="isOrganiser">Sign up as an Organiser</sl-checkbox>
+            <sl-button type="submit" variant="primary" class="signup-button">Sign Up</sl-button>
+            <sl-button variant="text" class="login-button">Back to Login</sl-button>
           </form>
         </div>
       </div>

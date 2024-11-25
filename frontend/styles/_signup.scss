@@ -14,16 +14,9 @@
     @extend .login-form;
 
     sl-checkbox::part(base) {
-      margin-bottom: 20px;
       padding-bottom: 30px;
       font-size: 15px;
       color: #6A0DAD;
-    }
-
-    sl-button.signup-button::part(base) {
-      background-color: #087FFF;
-      border: 2px solid #087FFF;
-      color: white;
     }
 
     sl-button.signup-button::part(base):hover {
