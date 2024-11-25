@@ -11,11 +11,14 @@ export function renderSignupPage(root) {
         <div class="signup-form">
           <h2>Sign Up</h2>
           <form id="signup-form">
-            <sl-input name="fullName" type="text" placeholder="Full Name" required></sl-input>
+            <sl-input name="first-name" type="text" placeholder="First Name" required></sl-input>
+            <sl-input name="last-name" type="text" placeholder="Last Name"></sl-input>
             <sl-input name="email" type="email" placeholder="Email" required></sl-input>
             <sl-input name="password" type="password" placeholder="Password" required></sl-input>
             <sl-input name="confirmPassword" type="password" placeholder="Confirm Password" required></sl-input>
-            <sl-checkbox name="isOrganiser">Sign up as an Organiser</sl-checkbox>
+            <div class="checkbox-container">
+                <sl-checkbox name="isOrganiser">Organiser Account</sl-checkbox>
+            </div>
             <sl-button type="submit" variant="primary" class="signup-button">Sign Up</sl-button>
             <sl-button variant="text" class="login-button">Back to Login</sl-button>
           </form>
@@ -36,11 +39,12 @@ export function renderSignupPage(root) {
         e.preventDefault();
 
         const formData = new FormData(signupForm);
-        const fullName = formData.get('fullName');
+        const firstName = formData.get('first-name');
+        const lastName = formData.get('last-name');
         const email = formData.get('email');
         const password = formData.get('password');
         const confirmPassword = formData.get('confirmPassword');
-        const isOrganizer = formData.get('isOrganizer') === 'on';
+        const isOrganiser = formData.get('isOrganiser') === 'on';
 
         if (password !== confirmPassword) {
             alert('Passwords do not match!');
@@ -53,7 +57,7 @@ export function renderSignupPage(root) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ fullName, email, password, isOrganizer }),
+                body: JSON.stringify({ firstName, lastName, email, password, isOrganiser }),
             });
 
             if (!response.ok) {

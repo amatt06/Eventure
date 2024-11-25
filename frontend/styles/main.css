@@ -222,8 +222,12 @@ body {
   }
 }
 
+.signup-right .signup-form .checkbox-container {
+  text-align: center;
+  margin: 20px 0;
+}
 .signup-right .signup-form sl-checkbox::part(base) {
-  padding-bottom: 30px;
+  display: inline-block;
   font-size: 15px;
   color: #6A0DAD;
 }
