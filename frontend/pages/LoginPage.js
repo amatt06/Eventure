@@ -6,6 +6,7 @@ export function renderLoginPage(root) {
       <div class="login-left">
         <img src="${Logo}" alt="Eventure Logo" />
       </div>
+      <div class="divider"></div>
       <div class="login-right">
         <div class="login-form">
           <h2>Login</h2>

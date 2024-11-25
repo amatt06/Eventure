@@ -16,6 +16,7 @@ input, .sl-input {
   display: flex;
   height: 100vh;
   background-color: #f5f5f5;
+  position: relative;
 }
 .login-container .login-left,
 .login-container .login-right {
@@ -31,10 +32,20 @@ input, .sl-input {
   width: 50%;
   height: auto;
 }
-.login-container .login-left h1 {
-  font-size: 48px;
-  margin-top: 20px;
-  font-weight: 600;
+.login-container .divider {
+  width: 1px;
+  background-color: #d9d9d9;
+  height: 90%;
+  align-self: center;
+}
+@media (max-width: 768px) {
+  .login-container .divider {
+    height: 1px;
+    width: 90%;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+  }
 }
 .login-container .login-right {
   background-color: white;
@@ -51,6 +62,7 @@ input, .sl-input {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  z-index: 2; /* Ensure it's above the divider */
 }
 .login-container .login-right .login-form sl-input {
   width: 100%;
@@ -81,6 +93,8 @@ input, .sl-input {
   }
   .login-container .login-right {
     padding: 10px;
+    padding-top: 50px;
+    position: relative;
   }
 }
 
