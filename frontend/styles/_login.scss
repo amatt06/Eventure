@@ -51,25 +51,38 @@
         font-style: normal;
         font-weight: 600;
         line-height: normal;
-        z-index: 2; /* Ensure it's above the divider */
+        z-index: 2;
       }
 
-      sl-input {
+      sl-input::part(base) {
         width: 100%;
         margin-bottom: 20px;
       }
 
-      .login-button {
+      sl-button.login-button::part(base) {
         width: 100%;
-        margin-bottom: 10px;
-        background-color: #007bfff7;
+        color: #6A0DAD;
+        border-radius: 15px;
+        border: 2px solid #6A0DAD;
+        background: #D9D9D9;
+      }
+
+      sl-button.login-button::part(base):hover {
+        background: #6A0DAD;
         color: white;
       }
 
-      .signup-button {
+      sl-button.signup-button::part(base) {
         width: 100%;
-        background-color: #d9d9d9;
-        color: black;
+        color: white;
+        border-radius: 15px;
+        border: 2px solid #6A0DAD;
+        background: #087FFF;
+      }
+
+      sl-button.signup-button::part(base):hover {
+        background: #6A0DAD;
+        color: white;
       }
     }
   }

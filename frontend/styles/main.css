@@ -3,12 +3,18 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-button, .sl-button {
-  padding: 12px 24px;
-  border-radius: 8px;
+button, .sl-button::part(base) {
+  font-family: Poppins, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 
-input, .sl-input {
+input, .sl-input::part(base) {
+  border-radius: 20px;
+  border: 1px solid #6A0DAD;
+  background: #FFF;
   margin-bottom: 10px;
 }
 
@@ -62,22 +68,33 @@ input, .sl-input {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  z-index: 2; /* Ensure it's above the divider */
+  z-index: 2;
 }
-.login-container .login-right .login-form sl-input {
+.login-container .login-right .login-form sl-input::part(base) {
   width: 100%;
   margin-bottom: 20px;
 }
-.login-container .login-right .login-form .login-button {
+.login-container .login-right .login-form sl-button.login-button::part(base) {
   width: 100%;
-  margin-bottom: 10px;
-  background-color: rgba(0, 123, 255, 0.968627451);
+  color: #6A0DAD;
+  border-radius: 15px;
+  border: 2px solid #6A0DAD;
+  background: #D9D9D9;
+}
+.login-container .login-right .login-form sl-button.login-button::part(base):hover {
+  background: #6A0DAD;
   color: white;
 }
-.login-container .login-right .login-form .signup-button {
+.login-container .login-right .login-form sl-button.signup-button::part(base) {
   width: 100%;
-  background-color: #d9d9d9;
-  color: black;
+  color: white;
+  border-radius: 15px;
+  border: 2px solid #6A0DAD;
+  background: #087FFF;
+}
+.login-container .login-right .login-form sl-button.signup-button::part(base):hover {
+  background: #6A0DAD;
+  color: white;
 }
 @media (max-width: 768px) {
   .login-container {

@@ -14,8 +14,8 @@ export function renderLoginPage(root) {
             <sl-input name="email" type="email" placeholder="Email" required></sl-input>
             <sl-input name="password" type="password" placeholder="Password" required></sl-input>
             <sl-button type="submit" variant="primary" class="login-button">Login</sl-button>
+            <sl-button variant="text" class="signup-button">Sign Up</sl-button>
           </form>
-          <sl-button variant="text" class="signup-button">Sign Up</sl-button>
         </div>
       </div>
     </div>
