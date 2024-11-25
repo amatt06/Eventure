@@ -21,8 +21,8 @@ router.get('/', async (req, res) => {
 // Create a new user
 router.post('/', async (req, res) => {
     try {
-        const { firstName, lastName, email, password, bio, accessLevel } = req.body;
-        const newUser = new User({ firstName, lastName, email, password, bio, accessLevel });
+        const { firstName, lastName, email, password, accessLevel } = req.body;
+        const newUser = new User({ firstName, lastName, email, password, accessLevel });
         await newUser.save();
         res.status(201).json(newUser);
     } catch (err) {

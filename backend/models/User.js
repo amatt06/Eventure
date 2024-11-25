@@ -20,9 +20,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    bio: {
-        type: String
-    },
     accessLevel: {
         type: Number,
         required: true,
