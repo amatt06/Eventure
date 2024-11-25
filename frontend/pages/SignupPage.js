@@ -44,7 +44,7 @@ export function renderSignupPage(root) {
         const email = formData.get('email');
         const password = formData.get('password');
         const confirmPassword = formData.get('confirmPassword');
-        const isOrganiser = formData.get('isOrganiser') === 'on';
+        const accessLevel = formData.get('isOrganiser') === 'on';
 
         if (password !== confirmPassword) {
             alert('Passwords do not match!');
@@ -52,12 +52,12 @@ export function renderSignupPage(root) {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/auth/signup', {
+            const response = await fetch('http://localhost:5000/user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ firstName, lastName, email, password, isOrganiser }),
+                body: JSON.stringify({ firstName, lastName, email, password, accessLevel }),
             });
 
             if (!response.ok) {
