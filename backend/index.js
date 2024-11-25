@@ -2,11 +2,18 @@ require('dotenv').config(); // Load environment variables
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/eventRoutes');
 
 const app = express();
+
+// Allow cross-origin requests
+app.use(cors({
+    origin: 'http://localhost:1234', // UPDATE: Add the frontend URL
+    credentials: true,
+}));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -22,7 +29,7 @@ app.use('/user', userRoutes);
 // Use auth routes
 app.use('/auth', authRoutes);
 
-// event routes
+// Event routes
 app.use('/events', eventRoutes);
 
 // Test route
