@@ -3,37 +3,34 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.login-container, .signup-container {
+.login-container {
   display: flex;
   height: 100vh;
   background-color: #f5f5f5;
   position: relative;
 }
-.login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left,
-.login-container .login-right,
-.login-container .signup-right,
-.signup-container .login-right,
-.signup-container .signup-right {
+.login-container .login-left,
+.login-container .login-right {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left {
+.login-container .login-left {
   background-color: white;
 }
-.login-container .login-left img, .login-container .signup-left img, .signup-container .login-left img, .signup-container .signup-left img {
+.login-container .login-left img {
   width: 50%;
   height: auto;
 }
-.login-container .divider, .signup-container .divider {
+.login-container .divider {
   width: 1px;
   background-color: #d9d9d9;
   height: 90%;
   align-self: center;
 }
 @media (max-width: 768px) {
-  .login-container .divider, .signup-container .divider {
+  .login-container .divider {
     height: 1px;
     width: 90%;
     top: 50%;
@@ -41,16 +38,16 @@ body {
     z-index: 1;
   }
 }
-.login-container .login-right, .login-container .signup-right, .signup-container .login-right, .signup-container .signup-right {
+.login-container .login-right {
   background-color: white;
   padding: 20px;
 }
-.login-container .login-right .login-form, .signup-right .login-container .login-right .signup-form, .login-container .signup-right .login-form, .login-container .signup-right .signup-form, .signup-container .login-right .login-form, .signup-right .signup-container .login-right .signup-form, .signup-container .signup-right .login-form, .signup-container .signup-right .signup-form {
+.login-container .login-right .login-form {
   width: 80%;
   max-width: 400px;
   text-align: center;
 }
-.login-container .login-right .login-form h2, .signup-right .login-container .login-right .signup-form h2, .login-container .signup-right .login-form h2, .login-container .signup-right .signup-form h2, .signup-container .login-right .login-form h2, .signup-right .signup-container .login-right .signup-form h2, .signup-container .signup-right .login-form h2, .signup-container .signup-right .signup-form h2 {
+.login-container .login-right .login-form h2 {
   color: #087FFF;
   font-size: 40px;
   font-style: normal;
@@ -58,182 +55,171 @@ body {
   line-height: normal;
   z-index: 2;
 }
-.login-container .login-right .login-form sl-input::part(base), .signup-right .login-container .login-right .signup-form sl-input::part(base), .login-container .signup-right .login-form sl-input::part(base), .login-container .signup-right .signup-form sl-input::part(base), .signup-container .login-right .login-form sl-input::part(base), .signup-right .signup-container .login-right .signup-form sl-input::part(base), .signup-container .signup-right .login-form sl-input::part(base), .signup-container .signup-right .signup-form sl-input::part(base) {
+.login-container .login-right .login-form sl-input::part(base) {
   width: 100%;
   margin-bottom: 20px;
 }
-.login-container .login-right .login-form sl-button.signup-button::part(base), .signup-right .login-container .login-right .signup-form sl-button.signup-button::part(base), .login-container .signup-right .login-form sl-button.signup-button::part(base), .login-container .signup-right .signup-form sl-button.signup-button::part(base), .signup-container .login-right .login-form sl-button.signup-button::part(base), .signup-right .signup-container .login-right .signup-form sl-button.signup-button::part(base), .signup-container .signup-right .login-form sl-button.signup-button::part(base), .signup-container .signup-right .signup-form sl-button.signup-button::part(base) {
+.login-container .login-right .login-form sl-button.signup-button::part(base) {
   width: 100%;
   color: #6A0DAD;
   border-radius: 15px;
   border: 2px solid #6A0DAD;
   background: #D9D9D9;
 }
-.login-container .login-right .login-form sl-button.signup-button::part(base):hover, .signup-right .login-container .login-right .signup-form sl-button.signup-button::part(base):hover, .login-container .signup-right .login-form sl-button.signup-button::part(base):hover, .login-container .signup-right .signup-form sl-button.signup-button::part(base):hover, .signup-container .login-right .login-form sl-button.signup-button::part(base):hover, .signup-right .signup-container .login-right .signup-form sl-button.signup-button::part(base):hover, .signup-container .signup-right .login-form sl-button.signup-button::part(base):hover, .signup-container .signup-right .signup-form sl-button.signup-button::part(base):hover {
+.login-container .login-right .login-form sl-button.signup-button::part(base):hover {
   background: #6A0DAD;
   color: white;
 }
-.login-container .login-right .login-form sl-button.login-button::part(base), .signup-right .login-container .login-right .signup-form sl-button.login-button::part(base), .login-container .signup-right .login-form sl-button.login-button::part(base), .login-container .signup-right .signup-form sl-button.login-button::part(base), .signup-container .login-right .login-form sl-button.login-button::part(base), .signup-right .signup-container .login-right .signup-form sl-button.login-button::part(base), .signup-container .signup-right .login-form sl-button.login-button::part(base), .signup-container .signup-right .signup-form sl-button.login-button::part(base) {
+.login-container .login-right .login-form sl-button.login-button::part(base) {
   width: 100%;
   color: white;
   border-radius: 15px;
   border: 2px solid #6A0DAD;
   background: #087FFF;
 }
-.login-container .login-right .login-form sl-button.login-button::part(base):hover, .signup-right .login-container .login-right .signup-form sl-button.login-button::part(base):hover, .login-container .signup-right .login-form sl-button.login-button::part(base):hover, .login-container .signup-right .signup-form sl-button.login-button::part(base):hover, .signup-container .login-right .login-form sl-button.login-button::part(base):hover, .signup-right .signup-container .login-right .signup-form sl-button.login-button::part(base):hover, .signup-container .signup-right .login-form sl-button.login-button::part(base):hover, .signup-container .signup-right .signup-form sl-button.login-button::part(base):hover {
+.login-container .login-right .login-form sl-button.login-button::part(base):hover {
   background: #6A0DAD;
   color: white;
 }
-.login-container .login-right .login-form sl-input::part(base), .signup-right .login-container .login-right .signup-form sl-input::part(base), .login-container .signup-right .login-form sl-input::part(base), .login-container .signup-right .signup-form sl-input::part(base), .signup-container .login-right .login-form sl-input::part(base), .signup-right .signup-container .login-right .signup-form sl-input::part(base), .signup-container .signup-right .login-form sl-input::part(base), .signup-container .signup-right .signup-form sl-input::part(base) {
+.login-container .login-right .login-form sl-input::part(base) {
   border-radius: 15px;
   border: 1.5px solid #6A0DAD;
 }
 @media (max-width: 768px) {
-  .login-container, .signup-container {
+  .login-container {
     flex-direction: column;
   }
-  .login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left,
-  .login-container .login-right,
-  .login-container .signup-right,
-  .signup-container .login-right,
-  .signup-container .signup-right {
+  .login-container .login-left,
+  .login-container .login-right {
     flex: none;
     width: 100%;
   }
-  .login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left {
+  .login-container .login-left {
     padding: 20px 10px;
   }
-  .login-container .login-right, .login-container .signup-right, .signup-container .login-right, .signup-container .signup-right {
+  .login-container .login-right {
     padding: 10px;
     padding-top: 50px;
     position: relative;
   }
 }
 
-body {
-  margin: 0;
+.signup-container {
+  display: flex;
+  height: 100vh;
+}
+
+.signup-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .signup-container {
+    flex-direction: column;
+  }
+}
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+.dashboard-container .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #007bff;
+  padding: 10px 20px;
+  color: white;
+}
+.dashboard-container .navbar .logo-container {
+  display: flex;
+  align-items: center;
+}
+.dashboard-container .navbar .logo-container img {
+  width: 50px;
+  height: 50px;
+}
+.dashboard-container .navbar .logo-container .logo-title {
   font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  margin-left: 10px;
 }
-
-.login-container, .signup-container {
+.dashboard-container .navbar .navbar-links {
   display: flex;
-  height: 100vh;
-  background-color: #f5f5f5;
-  position: relative;
+  gap: 20px;
 }
-.login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left,
-.login-container .login-right,
-.login-container .signup-right,
-.signup-container .login-right,
-.signup-container .signup-right {
+.dashboard-container .navbar .navbar-links .nav-link {
+  font-size: 25px;
+  color: white;
+  font-weight: 600;
+}
+.dashboard-container .content {
+  display: flex;
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
-.login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left {
-  background-color: white;
-}
-.login-container .login-left img, .login-container .signup-left img, .signup-container .login-left img, .signup-container .signup-left img {
-  width: 50%;
-  height: auto;
-}
-.login-container .divider, .signup-container .divider {
-  width: 1px;
-  background-color: #d9d9d9;
-  height: 90%;
-  align-self: center;
-}
-@media (max-width: 768px) {
-  .login-container .divider, .signup-container .divider {
-    height: 1px;
-    width: 90%;
-    top: 50%;
-    left: 0;
-    z-index: 1;
-  }
-}
-.login-container .login-right, .login-container .signup-right, .signup-container .login-right, .signup-container .signup-right {
-  background-color: white;
+.dashboard-container .content .sidebar {
+  width: 400px;
+  background: #087fff;
   padding: 20px;
 }
-.login-container .login-right .login-form, .signup-right .login-container .login-right .signup-form, .login-container .signup-right .login-form, .login-container .signup-right .signup-form, .signup-container .login-right .login-form, .signup-right .signup-container .login-right .signup-form, .signup-container .signup-right .login-form, .signup-container .signup-right .signup-form {
-  width: 80%;
-  max-width: 400px;
-  text-align: center;
-}
-.login-container .login-right .login-form h2, .signup-right .login-container .login-right .signup-form h2, .login-container .signup-right .login-form h2, .login-container .signup-right .signup-form h2, .signup-container .login-right .login-form h2, .signup-right .signup-container .login-right .signup-form h2, .signup-container .signup-right .login-form h2, .signup-container .signup-right .signup-form h2 {
-  color: #087FFF;
+.dashboard-container .content .sidebar .sidebar-header {
+  background: #6a0dad;
+  color: white;
   font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  z-index: 2;
-}
-.login-container .login-right .login-form sl-input::part(base), .signup-right .login-container .login-right .signup-form sl-input::part(base), .login-container .signup-right .login-form sl-input::part(base), .login-container .signup-right .signup-form sl-input::part(base), .signup-container .login-right .login-form sl-input::part(base), .signup-right .signup-container .login-right .signup-form sl-input::part(base), .signup-container .signup-right .login-form sl-input::part(base), .signup-container .signup-right .signup-form sl-input::part(base) {
-  width: 100%;
-  margin-bottom: 20px;
-}
-.login-container .login-right .login-form sl-button.signup-button::part(base), .signup-right .login-container .login-right .signup-form sl-button.signup-button::part(base), .login-container .signup-right .login-form sl-button.signup-button::part(base), .login-container .signup-right .signup-form sl-button.signup-button::part(base), .signup-container .login-right .login-form sl-button.signup-button::part(base), .signup-right .signup-container .login-right .signup-form sl-button.signup-button::part(base), .signup-container .signup-right .login-form sl-button.signup-button::part(base), .signup-container .signup-right .signup-form sl-button.signup-button::part(base) {
-  width: 100%;
-  color: #6A0DAD;
-  border-radius: 15px;
-  border: 2px solid #6A0DAD;
-  background: #D9D9D9;
-}
-.login-container .login-right .login-form sl-button.signup-button::part(base):hover, .signup-right .login-container .login-right .signup-form sl-button.signup-button::part(base):hover, .login-container .signup-right .login-form sl-button.signup-button::part(base):hover, .login-container .signup-right .signup-form sl-button.signup-button::part(base):hover, .signup-container .login-right .login-form sl-button.signup-button::part(base):hover, .signup-right .signup-container .login-right .signup-form sl-button.signup-button::part(base):hover, .signup-container .signup-right .login-form sl-button.signup-button::part(base):hover, .signup-container .signup-right .signup-form sl-button.signup-button::part(base):hover {
-  background: #6A0DAD;
-  color: white;
-}
-.login-container .login-right .login-form sl-button.login-button::part(base), .signup-right .login-container .login-right .signup-form sl-button.login-button::part(base), .login-container .signup-right .login-form sl-button.login-button::part(base), .login-container .signup-right .signup-form sl-button.login-button::part(base), .signup-container .login-right .login-form sl-button.login-button::part(base), .signup-right .signup-container .login-right .signup-form sl-button.login-button::part(base), .signup-container .signup-right .login-form sl-button.login-button::part(base), .signup-container .signup-right .signup-form sl-button.login-button::part(base) {
-  width: 100%;
-  color: white;
-  border-radius: 15px;
-  border: 2px solid #6A0DAD;
-  background: #087FFF;
-}
-.login-container .login-right .login-form sl-button.login-button::part(base):hover, .signup-right .login-container .login-right .signup-form sl-button.login-button::part(base):hover, .login-container .signup-right .login-form sl-button.login-button::part(base):hover, .login-container .signup-right .signup-form sl-button.login-button::part(base):hover, .signup-container .login-right .login-form sl-button.login-button::part(base):hover, .signup-right .signup-container .login-right .signup-form sl-button.login-button::part(base):hover, .signup-container .signup-right .login-form sl-button.login-button::part(base):hover, .signup-container .signup-right .signup-form sl-button.login-button::part(base):hover {
-  background: #6A0DAD;
-  color: white;
-}
-.login-container .login-right .login-form sl-input::part(base), .signup-right .login-container .login-right .signup-form sl-input::part(base), .login-container .signup-right .login-form sl-input::part(base), .login-container .signup-right .signup-form sl-input::part(base), .signup-container .login-right .login-form sl-input::part(base), .signup-right .signup-container .login-right .signup-form sl-input::part(base), .signup-container .signup-right .login-form sl-input::part(base), .signup-container .signup-right .signup-form sl-input::part(base) {
-  border-radius: 15px;
-  border: 1.5px solid #6A0DAD;
-}
-@media (max-width: 768px) {
-  .login-container, .signup-container {
-    flex-direction: column;
-  }
-  .login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left,
-  .login-container .login-right,
-  .login-container .signup-right,
-  .signup-container .login-right,
-  .signup-container .signup-right {
-    flex: none;
-    width: 100%;
-  }
-  .login-container .login-left, .login-container .signup-left, .signup-container .login-left, .signup-container .signup-left {
-    padding: 20px 10px;
-  }
-  .login-container .login-right, .login-container .signup-right, .signup-container .login-right, .signup-container .signup-right {
-    padding: 10px;
-    padding-top: 50px;
-    position: relative;
-  }
-}
-
-.signup-right .signup-form .checkbox-container {
   text-align: center;
-  margin: 20px 0;
+  padding: 10px;
+  border: 4px solid #ff6700;
 }
-.signup-right .signup-form sl-checkbox::part(base) {
-  display: inline-block;
-  font-size: 15px;
-  color: #6A0DAD;
+.dashboard-container .content .sidebar .event-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.signup-right .signup-form sl-button.signup-button::part(base):hover {
-  background-color: #6A0DAD;
-  border-color: #6A0DAD;
+.dashboard-container .content .sidebar .event-list .event-item {
+  background: white;
+  color: black;
+  font-size: 24px;
+  font-weight: 400;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.dashboard-container .content .main-content {
+  flex: 1;
+  background: rgba(217, 217, 217, 0.2);
+  border-radius: 30px;
+  margin: 30px;
+  padding: 20px;
+}
+.dashboard-container .content .main-content .event-details .event-title {
+  color: #6a0dad;
+  font-size: 40px;
+  font-weight: 600;
+}
+.dashboard-container .content .main-content .event-details p {
+  font-size: 20px;
+  color: #6a0dad;
+}
+.dashboard-container .content .main-content .event-details p strong {
+  color: #ff6700;
+}
+.dashboard-container .content .main-content .event-details .rsvp-button {
+  margin-top: 20px;
+  background: #6a0dad;
+  color: white;
+  border: 2px solid #ff6700;
+  border-radius: 15px;
 }
 
 /*# sourceMappingURL=main.css.map */

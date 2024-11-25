@@ -1,0 +1,111 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9f9f9;
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #007bff;
+    padding: 10px 20px;
+    color: white;
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .logo-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 32px;
+        font-weight: 800;
+        margin-left: 10px;
+      }
+    }
+
+    .navbar-links {
+      display: flex;
+      gap: 20px;
+
+      .nav-link {
+        font-size: 25px;
+        color: white;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+
+    .sidebar {
+      width: 400px;
+      background: #087fff;
+      padding: 20px;
+
+      .sidebar-header {
+        background: #6a0dad;
+        color: white;
+        font-size: 40px;
+        text-align: center;
+        padding: 10px;
+        border: 4px solid #ff6700;
+      }
+
+      .event-list {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .event-item {
+          background: white;
+          color: black;
+          font-size: 24px;
+          font-weight: 400;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+
+    .main-content {
+      flex: 1;
+      background: rgba(217, 217, 217, 0.2);
+      border-radius: 30px;
+      margin: 30px;
+      padding: 20px;
+
+      .event-details {
+        .event-title {
+          color: #6a0dad;
+          font-size: 40px;
+          font-weight: 600;
+        }
+
+        p {
+          font-size: 20px;
+          color: #6a0dad;
+
+          strong {
+            color: #ff6700;
+          }
+        }
+
+        .rsvp-button {
+          margin-top: 20px;
+          background: #6a0dad;
+          color: white;
+          border: 2px solid #ff6700;
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+}
