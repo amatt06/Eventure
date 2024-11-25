@@ -2,18 +2,3 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
 }
-
-button, .sl-button::part(base) {
-  font-family: Poppins, sans-serif;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-input, .sl-input::part(base) {
-  border-radius: 20px;
-  border: 1px solid #6A0DAD;
-  background: #FFF;
-  margin-bottom: 10px;
-}
