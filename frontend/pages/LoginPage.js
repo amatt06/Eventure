@@ -20,19 +20,48 @@ export function renderLoginPage(root) {
     </div>
   `;
 
-    // Handle Sign Up button click
+    // Navigate to Signup Page
     root.querySelector('.signup-button').addEventListener('click', () => {
         const event = new CustomEvent('navigate', { detail: { page: 'signup' } });
         document.dispatchEvent(event);
     });
 
-    // Handle Login form submission
+    // Handle Login Form Submission
     const loginForm = root.querySelector('#login-form');
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
         const formData = new FormData(loginForm);
         const email = formData.get('email');
         const password = formData.get('password');
-        console.log('Login submitted:', { email, password });
+
+        try {
+            const response = await fetch('http://localhost:5000/auth/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || 'Login failed');
+            }
+
+            const data = await response.json();
+            console.log('Login successful:', data);
+
+            // Store the token in localStorage
+            localStorage.setItem('token', data.token);
+
+            // Redirect to dashboard
+            const event = new CustomEvent('navigate', { detail: { page: 'dashboard' } });
+            document.dispatchEvent(event);
+
+        } catch (err) {
+            console.error('Error logging in:', err);
+            alert(err.message || 'An error occurred during login.');
+        }
     });
 }
