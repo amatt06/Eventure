@@ -1,15 +1,14 @@
-import Logo from '../assets/Logo.svg';
+import Logo from '../assets/Nav-Logo.svg';
 
 export function renderDashboard(root) {
     root.innerHTML = `
     <div class="dashboard-container">
         <!-- Top Navbar -->
         <div class="navbar">
-            <div class="logo-container">
+            <div class="navbar-left">
                 <img src="${Logo}" alt="Eventure Logo" />
-                <h1 class="logo-title">Eventure</h1>
             </div>
-            <div class="navbar-links">
+            <div class="navbar-right">
                 <sl-button variant="text" class="nav-link">Dashboard</sl-button>
                 <sl-button variant="text" class="nav-link">Profile</sl-button>
                 <sl-button variant="text" class="nav-link">Sign Out</sl-button>
@@ -43,6 +42,5 @@ export function renderDashboard(root) {
                 </div>
             </div>
         </div>
-    </div>
     `;
 }

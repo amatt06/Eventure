@@ -5,38 +5,52 @@
   background-color: #f9f9f9;
 
   .navbar {
+    width: 100%;
+    height: auto;
+    background: rgba(0, 123, 255, 0.97);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: #007bff;
-    padding: 10px 20px;
-    color: white;
+    justify-content: space-between;
 
-    .logo-container {
+    img {
+      padding: 3px 0 3px 15px;
+    }
+
+    .navbar-left {
       display: flex;
       align-items: center;
 
-      img {
-        width: 50px;
-        height: 50px;
-      }
-
-      .logo-title {
-        font-family: 'Poppins', sans-serif;
+      .logo {
+        color: white;
+        font-family: "Poppins", sans-serif;
         font-size: 32px;
         font-weight: 800;
-        margin-left: 10px;
+        margin-right: 16px;
+      }
+
+      .logo-icon {
+        width: 55px;
+        height: 55px;
+        background: white;
+        border-radius: 50%;
       }
     }
 
-    .navbar-links {
+    .navbar-right {
       display: flex;
       gap: 20px;
+      margin-right: 10px;
 
-      .nav-link {
-        font-size: 25px;
-        color: white;
+      sl-button.nav-link::part(base) {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
         font-weight: 600;
+        color: white;
+        text-align: center;
+      }
+
+      sl-button.nav-link::part(base):hover {
+        color: #ff6700;
       }
     }
   }
