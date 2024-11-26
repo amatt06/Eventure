@@ -225,12 +225,15 @@ body {
 .dashboard-container .content .main-content .event-details p strong {
   color: #ff6700;
 }
-.dashboard-container .content .main-content .event-details .rsvp-button {
+.dashboard-container .content .main-content .event-details sl-button.rsvp-button::part(base) {
   margin-top: 20px;
   background: #6a0dad;
   color: white;
   border: 2px solid #ff6700;
   border-radius: 15px;
+}
+.dashboard-container .content .main-content .event-details sl-button.rsvp-button::part(base):hover {
+  background: #ff6700;
 }
 
 /*# sourceMappingURL=main.css.map */
