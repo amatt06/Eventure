@@ -1,6 +1,7 @@
 import Logo from '../assets/Logo.svg';
 
 export function renderSignupPage(root) {
+    const url = 'http://localhost:5000/';
     root.innerHTML = `
     <div class="signup-container">
       <div class="signup-left">
@@ -52,7 +53,7 @@ export function renderSignupPage(root) {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/user', {
+            const response = await fetch(`${url}user`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,8 +1,11 @@
 import Logo from '../assets/Nav-Logo.svg';
 
 export async function renderDashboard(root) {
+    const url = 'http://localhost:5000/';
     const token = localStorage.getItem('token');
     const userEmail = localStorage.getItem('email');
+    const accessLevel = localStorage.getItem('accessLevel');
+
     if (!token) {
         console.error('No token found. Redirecting to login.');
         window.location.href = '/login'; // Redirect to login page
@@ -69,7 +72,7 @@ export async function renderDashboard(root) {
 
     async function fetchUserEvents(token) {
         try {
-            const response = await fetch('http://localhost:5000/events/user', {
+            const response = await fetch(`${url}events/user`, {
                 method: 'GET',
                 headers: {
                     'x-auth-token': token
@@ -92,7 +95,7 @@ export async function renderDashboard(root) {
 
     async function fetchEventDetails(eventId, token) {
         try {
-            const response = await fetch(`http://localhost:5000/events/${eventId}`, {
+            const response = await fetch(`${url}events/${eventId}`, {
                 method: 'GET',
                 headers: {
                     'x-auth-token': token
@@ -157,7 +160,7 @@ export async function renderDashboard(root) {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/events/${eventId}/rsvp`, {
+            const response = await fetch(`${url}events/${eventId}/rsvp`, {
                 method: 'POST',
                 headers: {
                     'x-auth-token': token
@@ -187,7 +190,7 @@ export async function renderDashboard(root) {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/events/${eventId}/unrsvp`, {
+            const response = await fetch(`${url}events/${eventId}/unrsvp`, {
                 method: 'POST',
                 headers: {
                     'x-auth-token': token

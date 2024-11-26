@@ -1,6 +1,7 @@
 import Logo from '../assets/Logo.svg';
 
 export function renderLoginPage(root) {
+    const url = 'http://localhost:5000/';
     root.innerHTML = `
     <div class="login-container">
       <div class="login-left">
@@ -38,7 +39,7 @@ export function renderLoginPage(root) {
 
         try {
             // Step 1: Authenticate user and obtain token
-            const authResponse = await fetch('http://localhost:5000/auth/signin', {
+            const authResponse = await fetch(`${url}auth/signin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ export function renderLoginPage(root) {
             localStorage.setItem('token', token);
 
             // Step 2: Validate the token and extract user info
-            const validationResponse = await fetch('http://localhost:5000/auth/validate', {
+            const validationResponse = await fetch(`${url}auth/validate`, {
                 method: 'GET',
                 headers: {
                     'x-auth-token': token,
@@ -76,6 +77,7 @@ export function renderLoginPage(root) {
 
             // Store additional user information in localStorage
             localStorage.setItem('email', userData.email);
+            localStorage.setItem('accessLevel', userData.accessLevel);
 
             // Step 3: Redirect to dashboard
             const event = new CustomEvent('navigate', { detail: { page: 'dashboard' } });
