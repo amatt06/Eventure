@@ -37,7 +37,8 @@ export function renderLoginPage(root) {
         const password = formData.get('password');
 
         try {
-            const response = await fetch('http://localhost:5000/auth/signin', {
+            // Step 1: Authenticate user and obtain token
+            const authResponse = await fetch('http://localhost:5000/auth/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,23 +46,43 @@ export function renderLoginPage(root) {
                 body: JSON.stringify({ email, password }),
             });
 
-            if (!response.ok) {
-                const error = await response.json();
+            if (!authResponse.ok) {
+                const error = await authResponse.json();
                 throw new Error(error.message || 'Login failed');
             }
 
-            const data = await response.json();
-            console.log('Login successful:', data);
+            const authData = await authResponse.json();
+            console.log('Login successful:', authData);
 
             // Store the token in localStorage
-            localStorage.setItem('token', data.token);
+            const token = authData.token;
+            localStorage.setItem('token', token);
 
-            // Redirect to dashboard
+            // Step 2: Validate the token and extract user info
+            const validationResponse = await fetch('http://localhost:5000/auth/validate', {
+                method: 'GET',
+                headers: {
+                    'x-auth-token': token,
+                },
+            });
+
+            if (!validationResponse.ok) {
+                const error = await validationResponse.json();
+                throw new Error(error.message || 'Token validation failed');
+            }
+
+            const userData = await validationResponse.json();
+            console.log('Token validated. User data:', userData);
+
+            // Store additional user information in localStorage
+            localStorage.setItem('email', userData.email);
+
+            // Step 3: Redirect to dashboard
             const event = new CustomEvent('navigate', { detail: { page: 'dashboard' } });
             document.dispatchEvent(event);
 
         } catch (err) {
-            console.error('Error logging in:', err);
+            console.error('Error during login:', err);
             alert(err.message || 'An error occurred during login.');
         }
     });

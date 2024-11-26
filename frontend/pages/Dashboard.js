@@ -2,6 +2,7 @@ import Logo from '../assets/Nav-Logo.svg';
 
 export async function renderDashboard(root) {
     const token = localStorage.getItem('token');
+    const userEmail = localStorage.getItem('email');
     if (!token) {
         console.error('No token found. Redirecting to login.');
         window.location.href = '/login'; // Redirect to login page
@@ -62,7 +63,7 @@ export async function renderDashboard(root) {
         button.addEventListener('click', async (e) => {
             const eventId = e.target.getAttribute('data-id');
             const eventDetails = await fetchEventDetails(eventId, token);
-            displayEventDetails(eventDetails);
+            displayEventDetails(eventDetails, userEmail);
         });
     });
 
@@ -112,15 +113,18 @@ export async function renderDashboard(root) {
         }
     }
 
-    function displayEventDetails(event) {
+    function displayEventDetails(event, userEmail) {
         const eventDetailsDiv = document.querySelector('.event-details');
 
         if (!event) {
             eventDetailsDiv.innerHTML = `
             <h2 class="event-title">Event not found</h2>
-        `;
+            `;
             return;
         }
+
+        // Check if the user has RSVP'd
+        const isRSVPd = event.rsvp_responses.some((r) => r.email === userEmail);
 
         eventDetailsDiv.innerHTML = `
         <h2 class="event-title">${event.title}</h2>
@@ -128,15 +132,23 @@ export async function renderDashboard(root) {
         <p><strong>Time:</strong> ${new Date(event.date).toLocaleTimeString()}</p>
         <p><strong>Location:</strong> ${event.location}</p>
         <p><strong>Description:</strong> ${event.description}</p>
-        <sl-button variant="primary" class="rsvp-button">RSVP</sl-button>
-    `;
+        <sl-button variant="primary" class="rsvp-button">
+            ${isRSVPd ? 'Un-RSVP' : 'RSVP'}
+        </sl-button>
+        `;
 
-        // Optional: Add event listener for RSVP button
+        // Add event listener for RSVP/Un-RSVP button
         const rsvpButton = document.querySelector('.rsvp-button');
-        rsvpButton.addEventListener('click', () => handleRSVP(event._id));
+        rsvpButton.addEventListener('click', () => {
+            if (isRSVPd) {
+                handleUnRSVP(event._id, rsvpButton);
+            } else {
+                handleRSVP(event._id, rsvpButton);
+            }
+        });
     }
 
-    async function handleRSVP(eventId) {
+    async function handleRSVP(eventId, button) {
         const token = localStorage.getItem('token');
         if (!token) {
             console.error('No token found. Please log in.');
@@ -154,16 +166,48 @@ export async function renderDashboard(root) {
 
             if (!response.ok) {
                 console.error(`Failed to RSVP: ${response.statusText}`);
-                alert('Failed to RSVP. Please try again.');
                 return;
             }
 
             const data = await response.json();
             console.log('RSVP successful:', data);
-            alert('You have successfully RSVP’d to this event!');
+            button.textContent = 'Un-RSVP';
+            button.onclick = () => handleUnRSVP(eventId, button);
         } catch (error) {
             console.error('Error handling RSVP:', error);
-            alert('An error occurred while RSVP’ing. Please try again.');
+        }
+    }
+
+    async function handleUnRSVP(eventId, button) {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('No token found. Please log in.');
+            alert('Please log in to unRSVP to this event.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:5000/events/${eventId}/unrsvp`, {
+                method: 'POST',
+                headers: {
+                    'x-auth-token': token
+                }
+            });
+
+            if (!response.ok) {
+                console.error(`Failed to unRSVP: ${response.statusText}`);
+                alert('Failed to unRSVP. Please try again.');
+                return;
+            }
+
+            const data = await response.json();
+            console.log('Un-RSVP successful:', data);
+            alert('You have successfully un-RSVP’d to this event!');
+            button.textContent = 'RSVP';
+            button.onclick = () => handleRSVP(eventId, button);
+        } catch (error) {
+            console.error('Error handling unRSVP:', error);
+            alert('An error occurred while unRSVP’ing. Please try again.');
         }
     }
 }
