@@ -135,4 +135,35 @@ export async function renderDashboard(root) {
         const rsvpButton = document.querySelector('.rsvp-button');
         rsvpButton.addEventListener('click', () => handleRSVP(event._id));
     }
+
+    async function handleRSVP(eventId) {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.error('No token found. Please log in.');
+            alert('Please log in to RSVP to this event.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:5000/events/${eventId}/rsvp`, {
+                method: 'POST',
+                headers: {
+                    'x-auth-token': token
+                }
+            });
+
+            if (!response.ok) {
+                console.error(`Failed to RSVP: ${response.statusText}`);
+                alert('Failed to RSVP. Please try again.');
+                return;
+            }
+
+            const data = await response.json();
+            console.log('RSVP successful:', data);
+            alert('You have successfully RSVP’d to this event!');
+        } catch (error) {
+            console.error('Error handling RSVP:', error);
+            alert('An error occurred while RSVP’ing. Please try again.');
+        }
+    }
 }
