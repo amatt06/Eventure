@@ -1,6 +1,8 @@
 import Logo from '../assets/Nav-Logo.svg';
 
 export function renderDashboard(root) {
+    const token = localStorage.getItem('token');
+    console.log('Token:', token);
     root.innerHTML = `
     <div class="dashboard-container">
         <!-- Top Navbar -->
