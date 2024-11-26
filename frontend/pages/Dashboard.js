@@ -202,7 +202,6 @@ export async function renderDashboard(root) {
 
             const data = await response.json();
             console.log('Un-RSVP successful:', data);
-            alert('You have successfully un-RSVP’d to this event!');
             button.textContent = 'RSVP';
             button.onclick = () => handleRSVP(eventId, button);
         } catch (error) {
