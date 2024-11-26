@@ -89,4 +89,50 @@ export async function renderDashboard(root) {
         }
     }
 
+    async function fetchEventDetails(eventId, token) {
+        try {
+            const response = await fetch(`http://localhost:5000/events/${eventId}`, {
+                method: 'GET',
+                headers: {
+                    'x-auth-token': token
+                }
+            });
+
+            if (!response.ok) {
+                console.error(`Failed to fetch event details: ${response.statusText}`);
+                return null;
+            }
+
+            const event = await response.json();
+            console.log('Fetched event details:', event); // Debug log
+            return event;
+        } catch (error) {
+            console.error('Error fetching event details:', error);
+            return null;
+        }
+    }
+
+    function displayEventDetails(event) {
+        const eventDetailsDiv = document.querySelector('.event-details');
+
+        if (!event) {
+            eventDetailsDiv.innerHTML = `
+            <h2 class="event-title">Event not found</h2>
+        `;
+            return;
+        }
+
+        eventDetailsDiv.innerHTML = `
+        <h2 class="event-title">${event.title}</h2>
+        <p><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</p>
+        <p><strong>Time:</strong> ${new Date(event.date).toLocaleTimeString()}</p>
+        <p><strong>Location:</strong> ${event.location}</p>
+        <p><strong>Description:</strong> ${event.description}</p>
+        <sl-button variant="primary" class="rsvp-button">RSVP</sl-button>
+    `;
+
+        // Optional: Add event listener for RSVP button
+        const rsvpButton = document.querySelector('.rsvp-button');
+        rsvpButton.addEventListener('click', () => handleRSVP(event._id));
+    }
 }
