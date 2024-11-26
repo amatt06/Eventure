@@ -184,14 +184,13 @@ body {
 .dashboard-container .content .sidebar {
   width: 400px;
   background: #087fff;
-  padding: 20px;
+  padding: 40px 10px;
 }
 .dashboard-container .content .sidebar .sidebar-header {
   background: #6a0dad;
   color: white;
-  font-size: 40px;
+  font-size: 20px;
   text-align: center;
-  padding: 10px;
   border: 4px solid #ff6700;
 }
 .dashboard-container .content .sidebar .event-list {
@@ -202,7 +201,6 @@ body {
 }
 .dashboard-container .content .sidebar .event-list .event-item {
   background: white;
-  color: black;
   font-size: 24px;
   font-weight: 400;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -218,6 +216,7 @@ body {
   color: #6a0dad;
   font-size: 40px;
   font-weight: 600;
+  margin-top: 0;
 }
 .dashboard-container .content .main-content .event-details p {
   font-size: 20px;
