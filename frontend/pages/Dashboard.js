@@ -4,7 +4,7 @@ export async function renderDashboard(root) {
     const url = 'http://localhost:5000/';
     const token = localStorage.getItem('token');
     const userEmail = localStorage.getItem('email');
-    const accessLevel = localStorage.getItem('accessLevel');
+    const accessLevel = localStorage.getItem('accessLevel'); // Access level (organizer or attendee)
 
     if (!token) {
         console.error('No token found. Redirecting to login.');
@@ -74,9 +74,7 @@ export async function renderDashboard(root) {
         try {
             const response = await fetch(`${url}events/user`, {
                 method: 'GET',
-                headers: {
-                    'x-auth-token': token
-                }
+                headers: { 'x-auth-token': token }
             });
 
             if (!response.ok) {
@@ -84,9 +82,7 @@ export async function renderDashboard(root) {
                 return [];
             }
 
-            const events = await response.json();
-            console.log('Fetched user events:', events); // Debug log
-            return events;
+            return await response.json();
         } catch (error) {
             console.error('Error fetching user events:', error);
             return [];
@@ -97,9 +93,7 @@ export async function renderDashboard(root) {
         try {
             const response = await fetch(`${url}events/${eventId}`, {
                 method: 'GET',
-                headers: {
-                    'x-auth-token': token
-                }
+                headers: { 'x-auth-token': token }
             });
 
             if (!response.ok) {
@@ -107,9 +101,7 @@ export async function renderDashboard(root) {
                 return null;
             }
 
-            const event = await response.json();
-            console.log('Fetched event details:', event); // Debug log
-            return event;
+            return await response.json();
         } catch (error) {
             console.error('Error fetching event details:', error);
             return null;
@@ -120,39 +112,82 @@ export async function renderDashboard(root) {
         const eventDetailsDiv = document.querySelector('.event-details');
 
         if (!event) {
-            eventDetailsDiv.innerHTML = `
-            <h2 class="event-title">Event not found</h2>
-            `;
+            eventDetailsDiv.innerHTML = `<h2 class="event-title">Event not found</h2>`;
             return;
         }
 
-        console.log(accessLevel)
+        const attendeeCount = event.rsvp_responses.length;
+
         if (accessLevel > 0) {
-            // edit details
+            // Organizer view with editable event details
+            eventDetailsDiv.innerHTML = `
+            <h2 class="event-title">${event.title}</h2>
+            <p><strong>Attendee Count:</strong> ${attendeeCount}</p>
+            <label>
+                <strong>Date:</strong>
+                <input type="date" class="edit-date" value="${event.date.split('T')[0]}">
+            </label>
+            <label>
+                <strong>Time:</strong>
+                <input type="time" class="edit-time" value="${new Date(event.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}">
+            </label>
+            <label>
+                <strong>Location:</strong>
+                <input type="text" class="edit-location" value="${event.location}">
+            </label>
+            <label>
+                <strong>Description:</strong>
+                <textarea class="edit-description">${event.description}</textarea>
+            </label>
+            <sl-button variant="primary" class="confirm-button">Confirm</sl-button>
+            `;
+
+            document.querySelector('.confirm-button').addEventListener('click', () => handleUpdateEvent(event._id));
         } else {
-            // Check if the user has RSVP'd
+            // Attendee view
             const isRSVPd = event.rsvp_responses.some((r) => r.email === userEmail);
 
             eventDetailsDiv.innerHTML = `
-        <h2 class="event-title">${event.title}</h2>
-        <p><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</p>
-        <p><strong>Time:</strong> ${new Date(event.date).toLocaleTimeString()}</p>
-        <p><strong>Location:</strong> ${event.location}</p>
-        <p><strong>Description:</strong> ${event.description}</p>
-        <sl-button variant="primary" class="rsvp-button">
-            ${isRSVPd ? 'Un-RSVP' : 'RSVP'}
-        </sl-button>
-        `;
+            <h2 class="event-title">${event.title}</h2>
+            <p><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</p>
+            <p><strong>Time:</strong> ${new Date(event.date).toLocaleTimeString()}</p>
+            <p><strong>Location:</strong> ${event.location}</p>
+            <p><strong>Description:</strong> ${event.description}</p>
+            <sl-button variant="primary" class="rsvp-button">${isRSVPd ? 'Un-RSVP' : 'RSVP'}</sl-button>
+            `;
 
-            // Add event listener for RSVP/Un-RSVP button
             const rsvpButton = document.querySelector('.rsvp-button');
             rsvpButton.addEventListener('click', () => {
-                if (isRSVPd) {
-                    handleUnRSVP(event._id, rsvpButton);
-                } else {
-                    handleRSVP(event._id, rsvpButton);
-                }
+                if (isRSVPd) handleUnRSVP(event._id, rsvpButton);
+                else handleRSVP(event._id, rsvpButton);
             });
+        }
+    }
+
+    async function handleUpdateEvent(eventId) {
+        const updatedEvent = {
+            date: document.querySelector('.edit-date').value,
+            time: document.querySelector('.edit-time').value,
+            location: document.querySelector('.edit-location').value,
+            description: document.querySelector('.edit-description').value,
+        };
+
+        try {
+            const response = await fetch(`${url}events/${eventId}`, {
+                method: 'PUT',
+                headers: {
+                    'x-auth-token': token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedEvent),
+            });
+
+            if (!response.ok) throw new Error('Failed to update event.');
+
+            alert('Event details updated successfully!');
+        } catch (error) {
+            console.error('Error updating event:', error);
+            alert('Failed to update event.');
         }
     }
 
