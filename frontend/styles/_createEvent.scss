@@ -1,24 +1,8 @@
 @import "common";
 @import "dashboard";
+@import "login";
 
 .create-event-container {
-  .navbar {
-    background-color: #007BFFF7;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    align-items: center;
-
-    .navbar-left img {
-      width: 120px;
-    }
-
-    .navbar-right .nav-link {
-      color: #fff;
-      margin: 0 10px;
-    }
-  }
-
   .create-event-content {
     display: flex;
     justify-content: center;
@@ -57,7 +41,33 @@
       justify-content: center;
       margin-top: 30px;
 
-      .create-event-btn, .cancel-btn {
+      sl-button.create-event-btn::part(base) {
+        margin-top: 20px;
+        background: #6a0dad;
+        color: white;
+        border: 2px solid #ff6700;
+        border-radius: 15px;
+      }
+
+      sl-button.cancel-btn::part(base) {
+        margin-top: 20px;
+        background: grey;
+        color: white;
+        border: 2px solid #ff6700;
+        border-radius: 15px;
+      }
+
+      sl-button.create-event-btn::part(base):hover, sl-button.cancel-btn::part(base):hover {
+        background: #ff6700;
+        border: 2px solid #6a0dad;
+      }
+
+      sl-button.cancel-btn::part(base):hover {
+        background: #ff6700;
+        border: 2px solid #ff6700;
+      }
+
+    .create-event-btn, .cancel-btn {
         margin: 0 10px;
       }
     }
