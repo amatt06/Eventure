@@ -66,7 +66,7 @@ export async function renderDashboard(root) {
         button.addEventListener('click', async (e) => {
             const eventId = e.target.getAttribute('data-id');
             const eventDetails = await fetchEventDetails(eventId, token);
-            displayEventDetails(eventDetails, userEmail);
+            displayEventDetails(eventDetails, userEmail, accessLevel);
         });
     });
 
@@ -116,7 +116,7 @@ export async function renderDashboard(root) {
         }
     }
 
-    function displayEventDetails(event, userEmail) {
+    function displayEventDetails(event, userEmail, accessLevel) {
         const eventDetailsDiv = document.querySelector('.event-details');
 
         if (!event) {
@@ -126,10 +126,14 @@ export async function renderDashboard(root) {
             return;
         }
 
-        // Check if the user has RSVP'd
-        const isRSVPd = event.rsvp_responses.some((r) => r.email === userEmail);
+        console.log(accessLevel)
+        if (accessLevel > 0) {
+            // edit details
+        } else {
+            // Check if the user has RSVP'd
+            const isRSVPd = event.rsvp_responses.some((r) => r.email === userEmail);
 
-        eventDetailsDiv.innerHTML = `
+            eventDetailsDiv.innerHTML = `
         <h2 class="event-title">${event.title}</h2>
         <p><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</p>
         <p><strong>Time:</strong> ${new Date(event.date).toLocaleTimeString()}</p>
@@ -140,15 +144,16 @@ export async function renderDashboard(root) {
         </sl-button>
         `;
 
-        // Add event listener for RSVP/Un-RSVP button
-        const rsvpButton = document.querySelector('.rsvp-button');
-        rsvpButton.addEventListener('click', () => {
-            if (isRSVPd) {
-                handleUnRSVP(event._id, rsvpButton);
-            } else {
-                handleRSVP(event._id, rsvpButton);
-            }
-        });
+            // Add event listener for RSVP/Un-RSVP button
+            const rsvpButton = document.querySelector('.rsvp-button');
+            rsvpButton.addEventListener('click', () => {
+                if (isRSVPd) {
+                    handleUnRSVP(event._id, rsvpButton);
+                } else {
+                    handleRSVP(event._id, rsvpButton);
+                }
+            });
+        }
     }
 
     async function handleRSVP(eventId, button) {
