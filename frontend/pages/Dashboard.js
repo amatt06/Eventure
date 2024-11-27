@@ -37,6 +37,7 @@ export async function renderDashboard(root) {
                     <h2>Events</h2>
                 </div>
                 <div class="event-list">
+                    ${accessLevel > 0 ? '<sl-button variant="primary" class="create-event">+</sl-button>' : ''}
                     ${events.length > 0
         ? events
             .map(
@@ -54,7 +55,7 @@ export async function renderDashboard(root) {
             <!-- Main Content Area -->
             <div class="main-content">
                 <div class="event-details">
-                    <h2 class="event-title">Select an event to see details</h2>
+                    <h2 class="event-title">Select an event</h2>
                 </div>
             </div>
         </div>

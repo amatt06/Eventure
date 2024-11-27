@@ -78,6 +78,19 @@
         flex-direction: column;
         gap: 10px;
 
+        sl-button.create-event::part(base) {
+          background: #ff6700;
+          color: white;
+          border: 2px solid #6a0dad;
+          border-radius: 10px;
+          font-size: 18pt;
+        }
+
+        sl-button.create-event::part(base):hover {
+          background: #6a0dad;
+          border: 2px solid #ff6700;
+        }
+
         .event-item {
           background: white;
           font-size: 24px;

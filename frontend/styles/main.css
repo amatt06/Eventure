@@ -199,6 +199,17 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+.dashboard-container .content .sidebar .event-list sl-button.create-event::part(base) {
+  background: #ff6700;
+  color: white;
+  border: 2px solid #6a0dad;
+  border-radius: 10px;
+  font-size: 18pt;
+}
+.dashboard-container .content .sidebar .event-list sl-button.create-event::part(base):hover {
+  background: #6a0dad;
+  border: 2px solid #ff6700;
+}
 .dashboard-container .content .sidebar .event-list .event-item {
   background: white;
   font-size: 24px;
