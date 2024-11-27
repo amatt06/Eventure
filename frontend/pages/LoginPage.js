@@ -1,7 +1,7 @@
 import Logo from '../assets/Logo.svg';
 
 export function renderLoginPage(root) {
-    const url = 'http://localhost:5000/';
+    const url = 'https://fathomless-badlands-96443-e1d7db421141.herokuapp.com/';
     root.innerHTML = `
     <div class="login-container">
       <div class="login-left">

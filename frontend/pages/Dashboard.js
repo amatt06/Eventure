@@ -1,7 +1,7 @@
 import Logo from '../assets/Nav-Logo.svg';
 
 export async function renderDashboard(root) {
-    const url = 'http://localhost:5000/';
+    const url = 'https://fathomless-badlands-96443-e1d7db421141.herokuapp.com/';
     const token = localStorage.getItem('token');
     const userEmail = localStorage.getItem('email');
     const accessLevel = parseInt(localStorage.getItem('accessLevel')); // Access level (organizer or attendee)
