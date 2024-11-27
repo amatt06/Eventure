@@ -1,0 +1,32 @@
+@import "common";
+@import "dashboard";
+
+.create-event-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .create-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+
+    sl-input,
+    sl-textarea,
+    sl-button {
+      width: 100%;
+    }
+
+    sl-button {
+      margin-top: 1rem;
+    }
+  }
+}

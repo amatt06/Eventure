@@ -6,6 +6,7 @@ import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import { renderLoginPage } from './pages/LoginPage.js';
 import { renderSignupPage } from './pages/SignupPage.js';
 import {renderDashboard} from "./pages/Dashboard";
+import {renderCreateEventPage} from "./pages/CreateEvent";
 
 const root = document.getElementById('root');
 
@@ -22,6 +23,9 @@ document.addEventListener('navigate', (e) => {
             break;
         case 'dashboard':
             renderDashboard(root);
+            break;
+        case 'create-event':
+            renderCreateEventPage(root);
             break;
         default:
             renderLoginPage(root);

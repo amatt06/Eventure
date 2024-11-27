@@ -4,7 +4,7 @@ export async function renderDashboard(root) {
     const url = 'http://localhost:5000/';
     const token = localStorage.getItem('token');
     const userEmail = localStorage.getItem('email');
-    const accessLevel = localStorage.getItem('accessLevel'); // Access level (organizer or attendee)
+    const accessLevel = parseInt(localStorage.getItem('accessLevel')); // Access level (organizer or attendee)
 
     if (!token) {
         console.error('No token found. Redirecting to login.');
@@ -42,13 +42,14 @@ export async function renderDashboard(root) {
         ? events
             .map(
                 (event) => `
-                        <sl-button variant="text" class="event-item" data-id="${event._id}">
-                            ${event.title}
-                        </sl-button>
-                    `
+                                    <sl-button variant="text" class="event-item" data-id="${event._id}">
+                                        ${event.title}
+                                    </sl-button>
+                                `
             )
             .join('')
-        : '<p>No events available</p>'}
+        : '<p>No events available</p>'
+    }
                 </div>
             </div>
 
@@ -61,6 +62,19 @@ export async function renderDashboard(root) {
         </div>
     </div>
     `;
+
+    // Add event listeners for the "+" button
+    if (accessLevel > 0) {
+        const createEventButton = document.querySelector('.create-event');
+        if (createEventButton) {
+            createEventButton.addEventListener('click', () => {
+                const navigateEvent = new CustomEvent('navigate', {
+                    detail: { page: 'create-event' },
+                });
+                document.dispatchEvent(navigateEvent);
+            });
+        }
+    }
 
     // Add event listeners for each event button
     document.querySelectorAll('.event-item').forEach((button) => {
@@ -75,7 +89,7 @@ export async function renderDashboard(root) {
         try {
             const response = await fetch(`${url}events/user`, {
                 method: 'GET',
-                headers: { 'x-auth-token': token }
+                headers: { 'x-auth-token': token },
             });
 
             if (!response.ok) {
@@ -94,7 +108,7 @@ export async function renderDashboard(root) {
         try {
             const response = await fetch(`${url}events/${eventId}`, {
                 method: 'GET',
-                headers: { 'x-auth-token': token }
+                headers: { 'x-auth-token': token },
             });
 
             if (!response.ok) {
@@ -204,8 +218,8 @@ export async function renderDashboard(root) {
             const response = await fetch(`${url}events/${eventId}/rsvp`, {
                 method: 'POST',
                 headers: {
-                    'x-auth-token': token
-                }
+                    'x-auth-token': token,
+                },
             });
 
             if (!response.ok) {
@@ -234,8 +248,8 @@ export async function renderDashboard(root) {
             const response = await fetch(`${url}events/${eventId}/unrsvp`, {
                 method: 'POST',
                 headers: {
-                    'x-auth-token': token
-                }
+                    'x-auth-token': token,
+                },
             });
 
             if (!response.ok) {
