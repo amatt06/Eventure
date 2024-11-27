@@ -2,6 +2,7 @@ import './styles/main.scss';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js';
+import '@shoelace-style/shoelace/dist/components/textarea/textarea.js';
 import { renderLoginPage } from './pages/LoginPage.js';
 import { renderSignupPage } from './pages/SignupPage.js';
 import {renderDashboard} from "./pages/Dashboard";

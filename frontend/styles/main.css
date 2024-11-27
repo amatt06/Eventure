@@ -218,21 +218,21 @@ body {
   font-weight: 600;
   margin-top: 0;
 }
-.dashboard-container .content .main-content .event-details p {
+.dashboard-container .content .main-content .event-details p, .dashboard-container .content .main-content .event-details label {
   font-size: 20px;
   color: #6a0dad;
 }
-.dashboard-container .content .main-content .event-details p strong {
+.dashboard-container .content .main-content .event-details p strong, .dashboard-container .content .main-content .event-details label strong {
   color: #ff6700;
 }
-.dashboard-container .content .main-content .event-details sl-button.rsvp-button::part(base) {
+.dashboard-container .content .main-content .event-details sl-button.rsvp-button::part(base), .dashboard-container .content .main-content .event-details sl-button.update-button::part(base) {
   margin-top: 20px;
   background: #6a0dad;
   color: white;
   border: 2px solid #ff6700;
   border-radius: 15px;
 }
-.dashboard-container .content .main-content .event-details sl-button.rsvp-button::part(base):hover {
+.dashboard-container .content .main-content .event-details sl-button.rsvp-button::part(base):hover, .dashboard-container .content .main-content .event-details sl-button.update-button::part(base):hover {
   background: #ff6700;
 }
 

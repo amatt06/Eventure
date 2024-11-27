@@ -125,24 +125,24 @@ export async function renderDashboard(root) {
             <p><strong>Attendee Count:</strong> ${attendeeCount}</p>
             <label>
                 <strong>Date:</strong>
-                <input type="date" class="edit-date" value="${event.date.split('T')[0]}">
+                <sl-input type="date" class="edit-date" value="${event.date.split('T')[0]}">
             </label>
             <label>
                 <strong>Time:</strong>
-                <input type="time" class="edit-time" value="${new Date(event.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}">
+                <sl-input type="time" class="edit-time" value="${new Date(event.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}">
             </label>
             <label>
                 <strong>Location:</strong>
-                <input type="text" class="edit-location" value="${event.location}">
+                <sl-input type="text" class="edit-location" value="${event.location}">
             </label>
             <label>
                 <strong>Description:</strong>
-                <textarea class="edit-description">${event.description}</textarea>
+                <sl-textarea class="edit-description" value="${event.description}"> </sl-textarea>
             </label>
-            <sl-button variant="primary" class="confirm-button">Confirm</sl-button>
+            <sl-button variant="primary" class="update-button">Update</sl-button>
             `;
 
-            document.querySelector('.confirm-button').addEventListener('click', () => handleUpdateEvent(event._id));
+            document.querySelector('.update-button').addEventListener('click', () => handleUpdateEvent(event._id));
         } else {
             // Attendee view
             const isRSVPd = event.rsvp_responses.some((r) => r.email === userEmail);
